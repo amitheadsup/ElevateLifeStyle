@@ -33,4 +33,12 @@ public class BaseTest {
 //            driver.quit();
 //        }
 //    }
+public void waitForPage() {
+    try {
+        Thread.sleep(800);  // Or use explicit wait logic
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+}
+
 }

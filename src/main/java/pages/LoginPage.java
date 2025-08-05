@@ -39,6 +39,16 @@ public class LoginPage {
     @FindBy(xpath = "//*[contains(text(), 'Remember me')]")
     private WebElement rememberMeCheckbox;
 
+    @FindBy(xpath = "//span[@class=\"font-medium text-sm\"]")
+    public WebElement invalidLoginErrorMessage;
+
+    @FindBy(xpath = "//p[text()='Email is required']")
+    public WebElement emailRequiredError;
+
+    @FindBy(xpath = "//p[text()='Password is required']")
+    public WebElement passwordRequiredError;
+
+
 
     public String enterEmail(String email) {
 //        emailField.clear();
@@ -67,11 +77,10 @@ public class LoginPage {
 
     }
 
-    //    public void errorMessage(){
-//        emailField.clear();
-//        emailField.sendKeys("email");
-//
-//    }
+    public String getInvalidLoginErrorMessage() {
+        return invalidLoginErrorMessage.getText();
+    }
+
     public void selectRememberBox() {
         if (rememberMeCheckbox.isSelected()) {
             rememberMeCheckbox.click();

@@ -10,7 +10,7 @@ public class ConfigReader {
     public ConfigReader() {
         properties = new Properties();
         try {
-            FileInputStream fis = new FileInputStream("/Users/amit/IdeaProjects/ElevateLifeStyle/src/resources/config.properties");
+            FileInputStream fis = new FileInputStream("/Users/amit/IdeaProjects/UrbanLifeStyle/src/resources/config.properties");
             properties.load(fis);
         } catch (IOException e) {
             e.printStackTrace();
@@ -28,13 +28,22 @@ public class ConfigReader {
     public String getAdminPassword() {
         return properties.getProperty("admin.password");
     }
+    public String getInvalidUsername() {
+        return properties.getProperty("invalid.username");
+    }
 
-    public String getBrowser() {
-        return properties.getProperty("browser");
+    public String getInvalidPassword() {
+        return properties.getProperty("invalid.password");
     }
+
     public int getExplicitWait() {
-        return Integer.parseInt(properties.getProperty("explicitWait"));
+        String waitTime = properties.getProperty("explicitWait");
+        if (waitTime == null || waitTime.trim().isEmpty()) {
+            return 10; // default value
+        }
+        return Integer.parseInt(waitTime);
     }
+
 
 
 }
