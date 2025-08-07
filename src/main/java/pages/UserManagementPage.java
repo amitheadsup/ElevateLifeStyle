@@ -1,6 +1,7 @@
 package pages;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,10 +22,10 @@ public class UserManagementPage {
     @FindBy(xpath = "//span[normalize-space()='User Management']")
     private WebElement userManagementSideBar;
 
-    @FindBy(xpath = "//button[normalize-space()='Add User']")
+    @FindBy(xpath = "//*[@id=\"root\"]/div[1]/div/div/div[2]/div/div/div[2]/div/div[1]/div/a")
     private WebElement addUserbtn;
 
-    @FindBy(xpath = "//input[@id=\"name\"]")
+    @FindBy(xpath = "//input[@placeholder=\"Enter full name\"]")
     private WebElement fullNameField;
 
     @FindBy(xpath = "//input[@id=\"email\"]")
@@ -42,7 +43,7 @@ public class UserManagementPage {
     @FindBy(xpath = "//input[@type=\"email\"]")
     private WebElement genderFemale;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Select a role')]")
+    @FindBy(xpath = "//input[@placeholder=\"Select a role\"]")
     private WebElement selectRole;
 
     @FindBy(xpath = "//input[@placeholder=\"Select a user type\"]")
@@ -60,6 +61,14 @@ public class UserManagementPage {
     @FindBy(xpath = "//*[text()=\"Add User\"]")
     private WebElement addUserSubmitBtn;
 
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[8]/div[1]/div[1]/span[1]/button[1]/*[name()='svg'][1]")
+    private WebElement updateIcon;
+
+    @FindBy(xpath = "(//*[text()='Update User'])[2]")
+    private WebElement updateBtn;
+
+    @FindBy(xpath = "//*[@id=\"root\"]/div[1]/div/div/div[2]/div/div/div[2]/div/div[3]/div/div/table/tbody/tr[1]/td[8]/div/div/span[2]/button")
+    private WebElement deleteBtn;
 
     public void clickUM() {
         userManagementSideBar.click();
@@ -74,12 +83,13 @@ public class UserManagementPage {
     }
 
     public void enterEmail() {
-        emailField.sendKeys("Testing Purpose");
+        emailField.sendKeys("ankit@gmail.com");
     }
 
     public void enterUserName() {
         userName.sendKeys("Testing Purpose");
     }
+
 
     public void selectGender() {
         Select genderDropDown = new Select(gender);
@@ -87,20 +97,31 @@ public class UserManagementPage {
         //gender.click();
     }
 
-    public void selectRole() {
-        Select roleDropDown = new Select(selectRole);
-        roleDropDown.selectByVisibleText("Staff");
+    public void selectRole() throws InterruptedException {
         selectRole.click();
+        Thread.sleep(1000);
+        WebElement role=driver.findElement(By.xpath("//*[@id=\"root\"]/div[1]/div/div/div[2]/div/div/div[2]/div[2]/div[6]/div/div[3]"));
+        role.click();
+//        Select roleDropDown = new Select(selectRole);
+//        roleDropDown.selectByValue("Staff");
+//        selectRole.click();
+
     }
 
     public void selectUserType() {
-        Select userTypeDropDown = new Select(selectUserType);
-        userTypeDropDown.deselectByVisibleText("Manager");
+        selectUserType.click();
+        WebElement user=driver.findElement(By.xpath("//*[@id=\"root\"]/div[1]/div/div/div[2]/div/div/div[2]/div[2]/div[7]/div/div[3]"));
+        user.click();
+//        Select userTypeDropDown = new Select(selectUserType);
+//        userTypeDropDown.deselectByVisibleText("Manager");
     }
 
     public void selectUnit() {
-        Select unitDropDown = new Select(selectUnit);
-        unitDropDown.deselectByVisibleText("Elevate 2 (UNIT7692)");
+        selectUnit.click();
+        WebElement unit=driver.findElement(By.xpath("//*[@id=\"root\"]/div[1]/div/div/div[2]/div/div/div[2]/div[2]/div[8]/div/div[2]/div[2]/div"));
+        unit.click();
+//        Select unitDropDown = new Select(selectUnit);
+//        unitDropDown.deselectByVisibleText("Elevate 2 (UNIT7692)");
     }
 
     public void enterPassword() {
@@ -115,6 +136,19 @@ public class UserManagementPage {
     public void smtBtn() {
         addUserSubmitBtn.click();
     }
+    public void clickUpdateIcon(){
+        updateIcon.click();
+    }
+    public void updateUserBtn(){
+        updateBtn.click();
+
+    }
+    public void deleteUserBtn(){
+        deleteBtn.click();
+
+    }
+
+
 
 
 }
