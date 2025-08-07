@@ -86,6 +86,5 @@ public class LoginPage {
             rememberMeCheckbox.click();
         }
 
-
     }
 }
